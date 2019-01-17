@@ -9,12 +9,13 @@ exclude:
   - "/vendor/"
 
 # Site settings
-title: UBcare R&D
-subtitle: "건강한 삶을 위한 가치 창조
-유비케어 기술블로그"
+title: UBcare 기술 블로그
+subtitle: 건강한 삶을 위한 가치 창조
 email: ubcarernd@gmail.com
 name: UBcare R&D Center
 description: >
+  건강한 삶을 위한 가치 창조,
+  유비케어가 함께 하겠습니다.
   A simple yet classy theme for your Jekyll website or blog.
 # Base URL of site (i.e. /blog). It should always start with a slash,
 # and never end with a slash. Set it to a blank value if hosting at the
@@ -71,26 +72,7 @@ descriptions:
 #     desc: Follow me on Twitter            # Description to display as link title, etc
 #     share: true                           # Include in the "Share" section of posts
 social:
-  - name: Twitter
-    icon: twitter
-    username: UBcare
-    url: https://twitter.com/TheBenCentra
-    desc: Follow me on Twitter
-    share: true
-
-  - name: Facebook
-    icon: facebook
-    username: thebencentra
-    url:
-    desc: Friend me on Facebook
-    share: true
-
-  - name: GitHub
-    icon: github
-    username: UBcare
-    url: https://github.com/ubcare
-    desc: Fork me on GitHub
-    share: false
+  
 
 
 # Social sharing protocols
