@@ -1,0 +1,27 @@
+---
+layout: post
+title:  "포스팅 연습"
+date:   2015-04-18 08:43:59
+author: 이현진
+categories: Blog
+cover: "/assets/instacode.png"
+---
+
+
+<img src="{{ site.baseurl }}/assets/posting/dummyfiles.png" title="Profile Picture" width="95">
+이미지 크기는 어떻게 줄이는가?
+
+# 작성중인 콘텐트
+
+블로그 개설 이전에 글 쓰는 연습을 해 봅니다.
+글 작성은 html이나 markdown으로 작성하면 됩니다.
+
+마크다운을 잘 지원하는 웹에디터가 있습니다.
+[스택에딧][stackedit]을 이용하면 손 쉽게 마크다운 콘텐트를 작성할 수 있습니다.
+
+
+이 블로그는 지킬([jekyll][jekyll]) 테마 중 [Centrarium][centrarium] 을 fork하여 제작되었습니다.
+
+[centrarium]: https://github.com/bencentra/centrarium
+[stackedit]: https://stackedit.io/
+[jekyll]: https://github.com/jekyll/jekyll
