@@ -1,9 +1,9 @@
 // Google Fonts
-@import url(//fonts.googleapis.com/css?family=Roboto+Slab:400,700,300|Roboto:400,700,300|Open+Sans:300italic,400italic,600italic,700italic,800italic,400,800,700,600,300);
+@import url(//fonts.googleapis.com/css?family=Nanum+Gothic:400,700);
 
 // Typography
-$base-font-family: "Open Sans", "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif; // $helvetica;
-$heading-font-family: "Roboto Slab", "Helvetica Neue", "Helvetica", "Arial", sans-serif; // $base-font-family;
+$base-font-family: "Nanum Gothic", sans-serif; // $helvetica;
+$heading-font-family: "Nanum Gothic" sans-serif; // $base-font-family;
 
 // Font Sizes
 $base-font-size: $em-base; // 16px
@@ -30,6 +30,8 @@ $white: #fff;
 $turquoise: #1abc9c;	// Turqoise
 $green: #27ae60;	  	// Nephritis
 $blue: #2980b9;				// Belize Hole
+$light-blue: #4aa6e4;				
+$indigo: #3F51B5;         // 
 $purple: #8e44ad;			// Wisteria
 $orange: #d35400;			// Pumpkin
 $red:	#c0392b;				// Pomegranate
@@ -40,7 +42,7 @@ $bc-red: #bc0000;
 // Font Colors
 $base-background-color: #fff;
 $base-font-color: $dark-gray;
-$action-color: $blue;
+$action-color: $light-blue;
 $highlight-color: tint($action-color, 33%);
 
 // Border
