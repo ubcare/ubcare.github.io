@@ -33,14 +33,14 @@ inter_post_navigation: false
 highlightjs_theme: "monokai-sublime"
 
 # Archive settings (see https://github.com/jekyll/jekyll-archives/)
-jekyll-archives:
-  enabled:
-    - categories
-    - tags
-  layout: 'archive'
-  permalinks:
-    category: '/category/:name/'
-    tag: '/tag/:name/'
+# jekyll-archives:
+#   enabled:
+#     - categories
+#     - tags
+#   layout: 'archive'
+#   permalinks:
+#     category: '/category/:name/'
+#     tag: '/tag/:name/'
 
 # Disqus comments
 # disqus_shortname: bencentra
@@ -50,11 +50,11 @@ jekyll-archives:
 
 # Category descriptions (for archive pages)
 descriptions:
-  - cat: Design
-    desc: "Design contents"
+  - cat: Recruit
+    desc: "UBcare Recruit contents"
 
-  - cat: Development
-    desc: "Development contents"
+  - cat: Blog
+    desc: "Technical contents"
 
 # Social icons and sharing options
 #

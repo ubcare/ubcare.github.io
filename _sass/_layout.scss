@@ -220,6 +220,11 @@ pre code.hljs {
 			text-align: right;
 			font-size: 0.9em;
 		}
+		.post-author {
+			@include span-columns(6);
+			text-align: right;
+			font-size: 0.9em;
+		}
 	}
 	.pagination {
 		padding-top: 2em;
