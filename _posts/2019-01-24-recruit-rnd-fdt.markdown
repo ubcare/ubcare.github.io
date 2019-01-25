@@ -8,7 +8,7 @@ cover: "/assets/web.jpg"
 ---
 
 # 웹개발 경력자 모집
-#### 세상이 꿈꾸던 헬스케어
+#### 세상이 꿈꾸던 헬스케어,  
 Healthcare Solution 대표기업 유비케어
 
 건강한 삶을 위한 가치창조의 주인공이 되세요.  
@@ -44,6 +44,7 @@ Healthcare Solution 대표기업 유비케어
 
 ## 채용 문의
 - 입사지원 [(서류제출)](https://www.ubcare.co.kr/Recruit/41/ApplyView?Idx=409#recruitView)
-- 개발팀  [(mschoe@ubcare.co.kr)](mailto://mschoe@ubcare.co.kr/)
+- 개발팀  [(mschoe@ubcare.co.kr)](mailto://mschoe@ubcare.co.kr/)sdf
 - 인사팀  [(syhan@ubcare.co.kr)](mailto://syhan@ubcare.co.kr/)
+
 
