@@ -44,7 +44,7 @@ Healthcare Solution 대표기업 유비케어
 
 ## 채용 문의
 - 입사지원 [(서류제출)](https://www.ubcare.co.kr/Recruit/41/ApplyView?Idx=409#recruitView)
-- 개발팀  [(mschoe@ubcare.co.kr)](mailto://mschoe@ubcare.co.kr/)sdf
+- 개발팀  [(mschoe@ubcare.co.kr)](mailto://mschoe@ubcare.co.kr/)
 - 인사팀  [(syhan@ubcare.co.kr)](mailto://syhan@ubcare.co.kr/)
 
 
