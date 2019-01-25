@@ -66,6 +66,7 @@ cover: "/assets/fullstack.jpg"
 
 
 ## 채용 문의
+- 입사지원 [(서류제출)](https://www.ubcare.co.kr/Recruit/41/ApplyView?Idx=408#recruitView)
 - 개발팀 [(jeonyoungmin@ubcare.co.kr)](mailto://jeonyoungmin@ubcare.co.kr/)
 - 인사팀 [(syhan@ubcare.co.kr)](mailto://syhan@ubcare.co.kr/)
 

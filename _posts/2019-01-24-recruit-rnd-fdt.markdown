@@ -28,3 +28,22 @@ Healthcare Solution 대표기업 유비케어
 - MS-SQL
 - (우대) 의료정보 관련 전공자 및 경험자
 
+## 지원 방법
+
+경력 사항을 기재한 이력서(형식 제한 없음) 및 자신을 설명할 수 있는 자료(포트폴리오 등)를 아래 이메일 주소로 보내 주세요.
+
+## 채용 절차
+
+사규에 따라 진행
+
+**서류 전형**  보내 주신 자료를 검토 합니다.
+
+**스텝 면접**  유비케어 연구실 스텝들과 만나 우리와 함께 할 수 있는 인재인지 확인 합니다.
+
+**임원 면접**  유비케어 임원 면접을 통해 최종 채용 절차를 진행 합니다.
+
+## 채용 문의
+- 입사지원 [(서류제출)](https://www.ubcare.co.kr/Recruit/41/ApplyView?Idx=409#recruitView)
+- 개발팀  [(mschoe@ubcare.co.kr)](mailto://mschoe@ubcare.co.kr/)
+- 인사팀  [(syhan@ubcare.co.kr)](mailto://syhan@ubcare.co.kr/)
+
