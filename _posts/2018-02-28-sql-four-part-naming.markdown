@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "SQL - Four Part Nameing의 함정"
+title: "SQL - Four Part Naming의 함정"
 date: 2019-02-28
 author: 최지선
 categories: Post
