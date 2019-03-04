@@ -37,14 +37,13 @@ cover: "/assets/fullstack.jpg"
 
 # 4 Part Name vs Open Query
 4 part Naming과 오픈쿼리의 성능을 비교해 보았습니다.
-
-<br>
-쿼리 결과는 동일하게 나타나지만...
+<br>쿼리 결과는 동일하게 나타나지만...
 ![](/assets/posting/20190228/1.png){: width="100%" height="100%"}
   
-**프로파일러에서 보면 놀라운 결과가!!!**
+프로파일러에서 보면 놀라운 결과가 나타납니다!!!
+<br>쿼리 실행시간이 앞의 것 ***(4 Part Naming 사용)은 0.6초***, 뒤의 것 ***(Open Query) 는 0.005 초***
 ![](/assets/posting/20190228/2.png){: width="100%" height="100%"}
-***놀랍다. 쿼리 실행시간이 앞의 것 (4 Part Naming 사용)은 0.6초, 뒤의 것 (Open Query) 는 0.005 초***
+
   
 <br>
 # 왜 이렇게 차이가 많이 나는가?
