@@ -32,7 +32,7 @@ cover: "/assets/connection.jpg"
 그렇다고 개발자가 DB에 직접 접속하여 값을 변경하는 것도 보안에 우려되고요.
 <br>
 <br>
-그래서 이 참에 [Firebase Realtime Database](https://firebase.google.com/docs/database/?hl=ko)를 이용해 보기로 했습니다.
+그래서 이 참에 [Firebase Realtime Database](https://firebase.google.com/docs/database/?hl=ko){: target="blank"}를 이용해 보기로 했습니다.
 
 
 <br>
@@ -54,8 +54,7 @@ cover: "/assets/connection.jpg"
 - 관리자기 Firebase Console (웹페이지)을 통해 데이터를 입력하면 Database에 반영되고, 실시간으로 클라이언트에 전달됩니다.
 실시간입니다! 여러분! 실시간!!
 
-- Firebase가 데이터 입력 화면, Database, API, SDK를 세트로 제공해 주기 때문에
-**레거시는 그대로 유지하고 Client와 Firebase간의 연결만으로 새 기능을 추가할 수 있습니다.
+- Firebase가 데이터 입력 화면, Database, API, SDK를 세트로 제공해 주기 때문에 레거시는 그대로 유지하고 Client와 Firebase간의 연결만으로 새 기능을 추가할 수 있습니다.
 
 - Firebase는 각종 클라이언트(iOS/Android/웹...) 마다 SDK나 코드를 제공하기에 구현도 매우 간단합니다.
 
