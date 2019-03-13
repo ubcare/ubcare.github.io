@@ -60,6 +60,16 @@ layout: default
 	</section>
 {% endif %}
 
+
+<section class="facebook_comments">
+	<div id="fb-root"></div>
+	<script async defer crossorigin="anonymous" src="https://connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v3.2&appId=400010584115368&autoLogAppEvents=1">
+	</script>
+<br><br>
+<div class="fb-comments" data-href="http://tech.ubcare.co.kr" data-width="100%" data-numposts="20" ></div>
+
+
+
 {% if site.disqus_shortname %}
 {% unless page.disqus_disabled %}
 <section class="disqus">
