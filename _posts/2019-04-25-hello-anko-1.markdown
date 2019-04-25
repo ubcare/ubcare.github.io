@@ -1,0 +1,144 @@
+---
+layout: post
+title: "Hello Anko!!"
+date: 2019-04-25
+author: 전강태
+categories: Post
+//tag : android, kotlin, ui, anko, library
+cover: "/assets/world.jpg"
+---
+
+
+# 들어가며
+"Anko는 안드로이드 개발 경험을 더 낫게 만들려는 노력에서 태어난 코틀린 라이브러리이다"고 책에서 소개하고 있습니다. 더불어 Anko를 사용하면 안드로이드 개발이 쉽고 효율적이다고 부연 설명하는데, 사실 8년 동안 윈도우 어플리케이션을 개발해왔던 저에게는 그리 쉽지 않았습니다. 뭐든 처음 접하면 생소하고 어렵기 마련이니까요. 게다가 아직 Anko 관련 서적이 많지 않아서 안드로이드 개발 서적의 일부 챕터를 참고해야 하는 상황이라 더 어렵습니다.<br><br>
+그럼에도 불구하고, 제가 Anko를 사용하고 이를 소개하려는 이유는, 아직 안드로이드 개발 주니어 단계라 구체적인 아키텍처, 성능 이슈 등은 잘 모르지만, 윈도우 개발과 비슷한 UI Framework 구성이 가능해진다는 점이 매력적이어서 였습니다. 게다가 성능도 XML을 이용한 UI구성보다 약 4배 향상된다고 하니 금상첨화였죠. 그럼 이제부터 Anko가 어떤 것이고 어떻게 사용하는지 공유하겠습니다.
+<br>
+<br>
+
+
+# Anko 란?
+Android 플랫폼은 자바(Java)로 개발하죠. 하지만, 2016년 코틀린(kotlin)이라는 자바 기반의 언어가 정식 발표됨에 따라(최초 발표는 2011년 이었답니다) 많은 안드로이드 개발자가 코틀린을 사용하게 되었습니다. Anko는 이 코틀린 언어 기반으로 동작하는 Component 이며, 아래 네 가지로 이루어져 있습니다. 
+- Anko Commons : 인텐트, 다이얼로그, 로깅 등의 반복적인 코드를 대폭 줄여주는 헬퍼.
+- Anko Layouts : 기존의 XML 레이아웃을 벗어나 코틀린 DSL(Domain-Specific Language)로 레이아웃을 작성할 수 있도록 해줍니다. Anko layout은 동적 레이아웃을 만드는 빠르고 안전한 방법을 제공합니다.
+- Anko SQLite : SQLite로 작업하는 것을 매우 쉽게 만들어주는 SQLite query DSL과 parser 모음.
+- Anko Coroutines : 코루틴은 비동기 프로그래밍을 위한 훌륭한 방법입니다. 
+[Kotlinx.coroutines](https://github.com/Kotlin/kotlinx.coroutines){: target="blank"} 라이브러리에 기반한 코루틴 유틸리티들을 제공합니다. 
+<br>
+
+이 중, 제가 소개하고 싶은 내용은 두 번째 내용인 Anko Layouts 입니다. 기존 Android는 UI를 XML을 이용하여 구성 및 표현하죠. 하지만, Anko 이용하여 UI를 구성하면 XML을 사용하지 않고 코틀린 코드로 UI구성이 가능하며, 아래와 같은 장/단점이 있습니다. 
+(제가 사용해보고 느낀 개인적 의견 입니다.)
+<br>
+
+### [장점]
+- Android UI 구성에 필요한 XML에 대한 사전 지식이 필요 없습니다. 
+- UI View 요소에 id를 부여하지 않아도 비즈니스 로직에서 쉽게 접근 가능합니다.
+- C# 과 같이 UI요소에 Designer/Behind Logic 코드로 분리할 수 있고, onClick, onChange 등 이벤트 핸들러 추가가 용이합니다.
+- XML Parsing 작업이 필요 없으므로 베터리 소모도 줄고, 컴파일 속도가 빠르다.
+<br>
+
+### [단점]
+- Preview 기능이 미흡합니다. 따라서 UI 요소 수정 후 확인을 위해 계속 빌드해야 합니다. 
+- 모든 UI를 코드로 표현해야 하기 때문에 초반 러닝 커브가 가파르며, 마우스 조작을 통한 UI구성은 불가 합니다.
+- 참고자료가 거의 없습니다. 게다가 불가능 하진 않지만 XML로 이루어진 기존 open library 는 사용하기 어렵습니다. 
+
+<br>
+위에서 언급하지 않았지만, 구글링 해보면 Anko는 기존 XML 코드보다 UI표현 속도가 빠르다고 하는데, 아직 제 피부에 와 닿지는 않았습니다. <br>
+그럼 Anko Layouts 은 어떻게 구성하는지 간단한 샘플을 통해 XML과 비교해보겠습니다.
+<br>
+
+### [XML – activity_main.xml]
+    <android.support.constraint.ConstraintLayout 
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent">
+
+            <EditText
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="제목을 입력 하세요." />
+
+            <!-- 인라인 클릭 리스너를 직접 추가해서
+            액티비티의 온클릭 델리게이트를 구현할 수는 없습니다. -->
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Test" />
+        </LinearLayout>
+    </android.support.constraint.ConstraintLayout>
+<br>
+
+### [Anko – MainActivity.kt]
+    verticalLayout {
+        val title = editText {
+            hint = "제목을 입력 하세요."
+        }.lparams(width = matchParent, height = dip(50))
+
+        button {
+            text = "Test"
+            onClick {
+                //Todo...
+            }
+        }.lparams(width = matchParent, height = wrapContent)
+
+    }.lparams(width = matchParent, height = matchParent)
+
+얼핏 보면 코드량이 많이 차이 나는 듯 하지만, IDE의 인텔리전스를 감안하면 중요하지 않은 것 같고요, View 명칭도 XML에서 사용하던 것과 대부분 동일합니다. 여기서 제가 주목한 점은 두 가지 입니다. 
+
+
+<br>
+**1. 클릭 이벤트 리스너 추가하는 코드**
+**2. UI 표현 코드의 물리적 위치**
+<br>
+
+기존 XML View 항목은 로직에서 컨트롤에 접근할 때 findViewById() 메서드를 이용해서 View 인스턴스를 생성하고, 해당 인스턴스에 필요한 이벤트 리스너를 추가하는 방식으로 알고 있습니다. 반면, Anko Layouts에서는 위 와 같이 비교적 간단하게 이벤트 리스너 등록이 가능합니다. 또한, UI 코드의 물리적 위치가 Java 폴더 내에 존재하기 때문에 로직 코드와 묶어서 관리 가능하며, 코틀린 언어로 작성되므로 변수 및 함수 등 로컬 자원도 공유 가능합니다.<br><br>
+
+
+# Anko 시작하기!
+그럼 Anko Componets를 설치 및 사용하는 방법에 대해서 알아보겠습니다. 안드로이드 스튜디오에서 개발 언어를 코틀린 환경으로 설정하는 부분은 별도 주제라 생각되어 생략하겠습니다. 예상하시겠지만 많은 분들이 사용하는 Gradle 을 이용하면 엄청나게 쉽게 설치 가능합니다. (참고로 저는 이 방법 밖에 모르기도 하고요. 수동 설치 싫어요!!)
+<br>
+<br>
+
+### 1. Gradle 변수 추가 
+선택 사항이지만 buildscript 에 anko_version 이라는 변수를 추가합니다. 저는 0.10.8 버전을 사용하였습니다.
+![](/assets/posting/20190425/1.png)
+<br>
+ 
+### 2. Gradle dependencies 추가
+![](/assets/posting/20190425/8.png){: width="100%" height="100%"}
+위 한 줄만 추가하면 Anko의 모든 기능을 사용할 수 있습니다. <br>
+만일 개별적인 기능들만 별도로 사용하고 싶다면 아래와 같은 코드도 가능합니다. 
+<br>
+![](/assets/posting/20190425/2.png){: width="100%" height="100%"}
+<br>
+
+## 3. Design 코드 생성
+위와 같이 설정하고 나면, default로 생성되어 있는 activity_main.xml 파일은 사용 중이든, 아니든 과감하게 삭제 합니다. 
+![](/assets/posting/20190425/3.png)
+<br>
+사용중인 파일을 삭제하였다면 아래와 같이 MainActivity 클래스에서 오류가 발생하겠죠. 
+![](/assets/posting/20190425/4.png)
+<br>
+그럼 MainActivity 코드를 아와 같이 수정합니다.
+<br>R.layout.activity_main 을 이용하지 않고 UI를 직접 작성하겠다~~ 라는 의미 입니다. 
+![](/assets/posting/20190425/5.png)
+<br>
+
+### 4. 실행결과 쨘~ 
+이 화면 하나를 위해 안쓰던 에뮬레이터까지 깔았네요 😝
+<br>
+![](/assets/posting/20190425/6.png)
+<br>
+<br>
+
+# 마치며… (예고편)
+사실 입사 후 윈도우 어플리케이션만 개발했던 제가 회사에 호기롭게 **“모바일 개발 하겠습니다 😤”**라고 했는데, 모바일 개발은 너무 백지 상태라 살짝 **“망했다😦”** 하고 막막해 했었습니다. 그 와중에 참석한 Kotlin 언어 교육에서 Anko라는 정보를 얻었고, 운명 이었을까요? 조금 깊이 학습해본 결과 WinForm 과 비슷한 구조로 개발 가능하겠다는 생각이 들었습니다. 아래는 현재 개발중인 VANDROID 프로젝트의 UI 파일 구조 인데요, 다음 포스팅에서는 C# 의 Windows Forms 응용프로그램 구조와 비교해서 Anko에 대해 조금 더 자세히 다뤄볼까 합니다.
+![](/assets/posting/20190425/7.png)
+<br>
+
