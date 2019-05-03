@@ -1,0 +1,107 @@
+---
+layout: post
+title: "Hello Anko!! - 2탄"
+date: 2019-05-03
+author: 전강태
+categories: Post
+//tag : android, kotlin, ui, anko, library
+cover: "/assets/android.jpg"
+---
+
+
+# 2탄에서는 😃
+윈폼(Windows Forms, 이하 윈폼)의 UI Framework 과 비슷한 구조를 구성하는 방법에 대해서 소개하고, 윈폼 코드와 비교해보도록 하겠습니다. **[(️ 1탄 다시보기)](/post/2019/04/25/hello-anko-1.html){: target="blank"}**
+<br>
+<br>
+
+# AnkoComponent\<T\> 인터페이스
+아시다시피 윈폼에서는 UI 와 Business 코드를 Partial 예약어를 통해 두 개로 분할 합니다. UI생성 코드는 Designer 코드에 작성하고, Business 코드에서 UI 인스턴스를 쉽게 접근할 수 있도록 되어 있죠. 반대로 Designer 코드에서 Business 코드의 함수도 자연스럽게 호출 가능합니다. Anko 에서는 AnkoComponet<T>를 구현함으로써 이러한 구조로 생성할 수 있습니다. 한 단계씩 살펴볼까요?<br><br>
+
+1탄에서 진행한 샘플 프로젝트에 아래와 같이 MainActivityDesigner 라는 Kotlin 클래스를 추가 합니다. 소스코드에서 마우스 우 클릭 > New > Kotlin File/Class > 클래스 명 입력 후, Kind 는 클래스 선택.
+<br>
+![](/assets/posting/20190503/1.png)
+<br>
+아래와 같이 클래스가 생성됩니다.
+![](/assets/posting/20190503/2.png)
+<br>
+그런 다음, 생성된 클래스가 AnkoComponent<MainActivity>를 구현하도록 코드를 추가합니다.
+
+![](/assets/posting/20190503/3.png)
+
+붉은 색 에러가 발생합니다. 이유는 createView(ui:AnkoContext<T>):View 함수를 구현해야하기 때문이죠. 우선, Alt+Enter 이용해서 자동으로 생성해봅니다.
+
+![](/assets/posting/20190503/4.png)
+
+에러는 사라졌습니다. 그럼 아래와 같이 코드를 변경 해보겠습니다. 함수의 리턴 타입을 지정하지 말고, 실제 View를 생성해서 바로 리턴 하도록 할 것입니다.
+
+![](/assets/posting/20190503/5.png)
+
+**verticalLayout 구성된 UI를 생성하겠다!**는 의미 입니다. UI코드는 1탄에서 다룬 내용을 그대로 붙여 넣었습니다. 그 다음엔 MainActivity 코드가 생성 될 때 Designer 코드가 활용되도록 해야겠죠. 윈폼의 InitializeComponent() 함수를 호출하는 과정이라고 보시면 될 것 같습니다. 아래 붉은 색 표시된 코드 한 줄을 추가합니다.
+
+![](/assets/posting/20190503/6.png)
+
+그럼 지금까지 적용한 코드가 잘 동작하는지 테스트 해 볼까요? 에뮬레이터에 실행해보았습니다. 
+
+![](/assets/posting/20190503/7.png){: width="40%" height="40%"}
+
+쨘~! 1탄 결과와 동일한 화면이 나타났습니다. Designer 와 Business 코드를 분리 해도 동일하게 동작 합니다.
+<br><br>
+
+# 이벤트 핸들러 추가 / UI인스턴스 사용
+그럼 이번엔 Test버튼 클릭 이벤트를 정의하고 호출해보겠습니다. 아래와 같이 MainAcitivity 클래스에 onClick_Test() 함수를 추가합니다. (맘엔 안 들지만 함수명도 윈폼 스타일로…ㅎㅎㅎ) 내용은 간단히 버튼 클릭 시 고정 텍스트를 Toast 로 출력 해볼게요.
+<br>
+![](/assets/posting/20190503/8.png)
+<br>
+Designer 코드에서는 버튼 클릭할 때, 위에서 추가한 onClick_Test() 함수를 호출해야 합니다. createView 함수 파라미터로 받은 ui라는 AnkoContext<T>가 본 activity 의 여러 객체들을 포함하고 있는데, ui.owner 인스턴스를 통해서 Business 코드에 접근 가능합니다. 아래와 같이 onClick 함수에 ui.owner.onClick_Test() 코드를 추가합니다. 
+
+![](/assets/posting/20190503/9.png)
+
+그런 다음, 실행해보면!!
+
+![](/assets/posting/20190503/10.png){: width="40%" height="40%"}
+
+정상적으로 Toast 메시지가 보여지네요. 
+
+<br>
+그럼 이번엔, 버튼을 눌렀을 때 보여주던 Toast는 제거하고, 위 EditText의 hint 를 변경해보도록 하겠습니다. 해당 View(윈폼에서는 컨트롤)에 접근하려면 View Instance(인스턴스)가 있어야 하겠죠. 그래서 이미 1탄에서 EditText 생성 시 title 이라는 변수에 EditText를 할당 해놨습니다. Anko에서는 아래와 같이 쉽게 인스턴스 생성이 가능합니다. 
+
+![](/assets/posting/20190503/11.png)
+
+하지만, 해당 변수는 Designer 외부 클래스에서 사용되어야 하므로, lateinit 키워드를 이용해 외부로 노출 시키는 변수를 생성합니다. (또 맘에 들지 않지만 변수명을 바꾸겠습니다.)
+
+![](/assets/posting/20190503/12.png)
+
+윈폼에서는 Designer와 Business가 partial 클래스로 구분되므로 변수 접근이 매우 용이하나, Anko에서는 별도 클래스이므로 Designer 코드에 접근할 수 있도록 인스턴스를 생성해야 합니다. 여러가지 방법이 있을 수 있지만 저는 Kotlin 의 매우 편리한 기능인 .apply() 함수를 이용하여 Designer 인스턴스를 생성하였습니다. 
+
+![](/assets/posting/20190503/13.png)
+
+그럼 onClick_Test() 내에서는 아래와 같이 View 인스턴스에 접근 가능합니다. 
+
+![](/assets/posting/20190503/14.png)
+
+자! 다시 실행 해서 버튼을 눌러 보면???
+
+![](/assets/posting/20190503/15.png){: width="40%" height="40%"}
+
+짠! EditText 의 hint가 잘 변경 됩니다. 
+
+<br>
+<br>
+# 윈폼 vs Anko
+그럼 위 구조가 윈폼 UI 구성과 비슷한지 C#코드와 비교해보겠습니다.
+#### Designer Code
+![](/assets/posting/20190503/16.png)
+vs
+![](/assets/posting/20190503/17.png)
+<br>
+
+#### Business Code
+![](/assets/posting/20190503/18.png)
+vs
+![](/assets/posting/20190503/19.png)
+<br>
+<br> 
+
+# 생각해보면…
+윈폼 UI framework이 기존 안드로이드 프레임웍(XML)보다 좋고, 옳다고 할 수는 없습니다. 다만, 익숙함의 차이인 것 같습니다. 윈폼에 익숙한 윈도우 개발자가 안드로이드를 처음 접할 때 겪는 UI구성의 어려움을 조금이나마 해소해보고자 이런 방법을 사용해봤습니다. 물론 Anko가 더 불편합니다. Visual Studio 라는 최강(?)의 IDE에서는 클릭 몇 번으로 위 내용의 절반 이상이 해결되지만, Android Studio는 아니거든요. 하지만, 나중에 우리 회사만의 독자적인 UBCare Anko Framework 을 잘 구축해 놓는다면 충분히 편리하게 사용할 수 있을 것이라 믿어 의심치 않습니다. 다음 3탄에서는 Anko를 사용하여 윈폼의 UserControls 에 해당하는 Custom View 와, 안드로이드에서 매우 빈번하게 사용되는 RecyclerView 사용기에 대해 공유 해보겠습니다!
+🖐️🖐️🖐️
