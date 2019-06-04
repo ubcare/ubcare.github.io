@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:400,500&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="p5.css">
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="library/Slider.js"></script>
+
+        <script type="text/javascript">
+            var mouseX = 0;
+            var mouseY = 0;
+            $(document).ready(function(){
+                var changeCheckbox = function(ele){
+                    if(ele.checked){
+                        $('.cube-wrap').css('transition', 'transform .3s linear');
+                        $('.cube').css('transition', 'transform .3s linear');
+                    }else{
+                        $('.cube-wrap').css('transition', '');
+                        $('.cube').css('transition', '');
+                    }
+                }
+                new Slider({
+                    selector: '.slider',
+                    title: 'opacity',
+                    pointChanged : function(val){
+                        $('.cube .side').css('opacity', val);
+                    }
+                });
+
+
+            })
+
+
+
+            var isAnima= false;
+            var currentAniType;
+            function autoRotate(){
+                if(isAnima){
+                    if($('.cube').css('animation-play-state') == 'paused'){
+                        $('.cube').css('animation-play-state','running');
+                    }else{
+                        $('.cube').css('animation-play-state','paused');
+                    }
+                }else{
+                    $('.cube').css('animation','turn3 5s linear infinite')
+                    isAnima = true;
+                }
+            }
+
+
+        </script>
+
+    </head>
+    <body>
+        <div class="buttons">
+            <div class="slider" minval="0.1" maxval="1" val="0.8"></div>
+            <button onclick="autoRotate()">자동회전</button>
+        </div>
+        <div class="cube-wrap">
+            <div class="cube">
+                <div class="side">앞</div>
+                <div class="side">뒤</div>
+                <div class="side">좌</div>
+                <div class="side">우</div>
+                <div class="side">상</div>
+                <div class="side">하</div>
+            </div>
+        </div>
+
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- -->

@@ -1,0 +1,145 @@
+$box_size: 500px;
+$cube_scale: 2;
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html,body{
+    overflow: hidden;
+    height: 100%;
+    font-family: 'Noto Sans KR', sans-serif;
+    background: #f6f8fa;
+}
+button{
+    font-family: inherit;
+    font-weight: 500;
+}
+.buttons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    position: relative;
+    z-index: 1;
+    padding: 20px 20px;
+    *{
+        user-select: none; /* Standard syntax */
+    }
+    .check-group{
+        margin-right: 10px;
+        cursor: pointer;
+        margin-bottom: 10px;
+    }
+    button{
+        padding: 0 10px;
+        border-radius: 4px;
+        height: 32px;
+        text-align: center;
+        border: 0;
+        outline: none;
+        margin-bottom: 10px;
+
+        // background: linear-gradient(to bottom, #f8f8f8, #f0f0f0);
+        background: #ff5252;
+        color: #fff;
+        cursor: pointer;
+        font-size: 14px;
+
+        & + button{
+            margin-left: 10px;
+        }
+        &:hover{
+            background: #cf464f;
+        }
+        &.black{
+            background: #000;
+        }
+    }
+}
+
+.cube-wrap{
+    position: absolute;
+    top:0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    // width: $box_size * 2;
+    // height: $box_size * 2;
+    margin: 50px auto 0 auto;
+    perspective: 3000px;
+    transform: scale(0.3);
+
+    *{
+        -webkit-user-select: none; /* Safari 3.1+ */
+        -moz-user-select: none; /* Firefox 2+ */
+        -ms-user-select: none; /* IE 10+ */
+        user-select: none; /* Standard syntax */
+    }
+
+}
+.cube{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: #{$box_size * -1 / 2};
+    margin-top: #{$box_size * -1 / 2};
+    width: $box_size;
+    height: $box_size;
+    transform-style: preserve-3d;
+    .side{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: inherit;
+        height: inherit;
+        border: 2px solid #333;
+        text-align: center;
+        line-height: $box_size;
+        font-size: $box_size / 3;
+        color: #333;
+        background-color: rgba(255, 255, 255, 1);
+
+    }
+
+    .side:nth-child(1){ // 앞
+        transform: translateZ(#{$box_size/2});
+    }
+    .side:nth-child(2){ //뒤
+        transform: rotateY(180deg) translateZ(#{$box_size/2});
+    }
+    .side:nth-child(3){ //좌
+        transform: rotateY(-90deg) translateZ(#{$box_size/2});
+    }
+    .side:nth-child(4){ //우
+        transform: rotateY(90deg) translateZ(#{$box_size/2});
+    }
+    .side:nth-child(5){ //상
+        transform: rotateX(90deg) translateZ(#{$box_size/2});
+    }
+    .side:nth-child(6){ //하
+        transform: rotateX(-90deg) translateZ(#{$box_size/2});
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*****************/

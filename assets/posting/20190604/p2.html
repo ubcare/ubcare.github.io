@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:400,500&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="p2.css">
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $('#chk-apply').change(function(){
+                    if(this.checked){
+                        $('.cube').css('transition', 'transform .3s linear');
+                    }else{
+                        $('.cube').css('transition', '');
+                    }
+                })
+            })
+            var rotateX = 0;
+            var rotateY = 0;
+            function resetRotate(){
+                $('.cube').css('transform','');
+                rotateX = 0;
+                rotateY = 0;
+            }
+            function editRotateY(right){
+                if(right){
+                    rotateY += 90;
+                }else{
+                    rotateY -= 90;
+                }
+                $('.cube').css('transform', 'rotateX('+rotateX+'deg) rotateY('+rotateY+'deg)')
+            }
+            function editRotateX(right){
+                if(right){
+                    rotateX += 90;
+                }else{
+                    rotateX -= 90;
+                }
+                $('.cube').css('transform', 'rotateX('+rotateX+'deg) rotateY('+rotateY+'deg)')
+            }
+        </script>
+
+    </head>
+    <body>
+        <div class="buttons">
+            <label for="chk-apply" class="check-group">
+                <input type="checkbox" id="chk-apply"> Transition 적용
+            </label>
+            <button onclick="editRotateY(true)">+Y축 회전</button>
+            <button onclick="editRotateY(false)">-Y축 회전</button>
+            <button onclick="editRotateX(true)">+X축 회전</button>
+            <button onclick="editRotateX(false)">-X축 회전</button>
+            <button onclick="resetRotate()" class="black">Reset</button>
+        </div>
+        <div class="cube-wrap">
+            <div class="cube">
+                <div class="side">앞</div>
+                <div class="side">뒤</div>
+                <div class="side">좌</div>
+                <div class="side">우</div>
+                <div class="side">상</div>
+                <div class="side">하</div>
+            </div>
+        </div>
+
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- -->
