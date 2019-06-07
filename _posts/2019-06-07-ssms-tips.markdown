@@ -1,0 +1,91 @@
+---
+layout: post
+title: "SQL 소소한 팁"
+date: 2019-06-07
+author: 양잎새
+categories: Post
+//tag : database,query,managementstudio
+cover: "/assets/puppy.jpg"
+---
+<br>
+## <center>“빨리 좀 확인 해주세요~!”</center>
+<br>
+# <center>😨 😨 😨</center>
+<br>
+<center>업무를 하다 보면 긴급 요청이 들어와 급히 테이블을 찾아야 하는 경우가 있죠</center>
+<br>
+<center>'이 테이블이 맞나?'</center>
+<center>'그 컬럼이 이 테이블에 있나?'</center>
+<center>'데이터가 잘 입력되어 있나?'</center>
+<br>
+<center>이런 경우가 많다면 이미 알고 계시는 내용일 수도 있겠지만</center>
+<center>혹시 누군가에게는 꿀팁이 될 수도 있을거란 생각으로 SQL Server Management Studio 사용과</center>
+<center>SQL 쿼리 작성에 도움이 될만한 내용을 소개해봅니다 😄</center>
+<br>
+<br>
+
+# 1. 쿼리 바로 가기
+자주 사용하는 명령을 단축키로 등록해놓고 간단하게 실행할 수 있습니다.<br>
+[도구] – [옵션] – [환경] – [키보드] – [쿼리 바로 가기]
+- STEP1 자주 사용하는 프로시저나 명령을 등록해 놓고
+- STEP2 쿼리 창에서 개체를 선택한 후에 
+- STEP3 설정한 단축키를 실행하여 사용합니다.
+![](/assets/posting/20190607/sql0.png)
+
+옵션 창을 열어보시면 기본으로 등록된 설정이 있습니다.<br> 
+참고로 저는 아래와 같이 등록을 해두고 아주 유용하게 사용하고 있습니다.
+![](/assets/posting/20190607/sql8.png)
+<br>
+<br>
+
+# 2. 서버마다 다른 상태 표시줄 색상
+쿼리 창 하단에는 서버정보, 로그인 계정, 데이터베이스 이름, 실행 시간, 행 개수 등의 정보가 표시되는 상태 표시줄이 있습니다. 이 상태 표시줄에 색상을 지정하면 이 창이 테스트 서버인지 실 서버인지 직관적으로 알 수 있습니다.
+<br>
+<br>
+[도구] – [옵션] – [텍스트 편집기] – [편집기 탭 및 상태 표시줄] –[상태 표시줄 레이아웃 및 색]
+![](/assets/posting/20190607/sql1.png)
+위치나 내용도 설정할 수 있으니 취향이나 용도에 맞게 설정하시고 사용하시면 도움이 될 것 같아요.
+	
+<br>
+<br>
+# 3. 0 숫자 채우기
+전체 길이가 고정된 숫자를 사용하는 경우, 어떻게 사용하시나요? 성능에 문제 되지 않고 문자를 합쳤다가 자르는 원리로 만들어 낼 수 있습니다.<br>
+<br>
+다음은 1을 ‘0000001’로 나타낼 때, 사용한 방법입니다.
+![](/assets/posting/20190607/sql2.png)
+물론 REPLACE 나 REPLICATE 를 사용할 수도 있지만, 언젠가 SQL 교육에서 강사님이 CONCAT 사용을 지향하더라고요.
+
+<br>
+<br>
+# 4. 마지막 문자열 구하기
+전체 문자열에서 일부를 추출하는 경우에 사용하기 좋은 함수가 있습니다.<br>
+예를 들어 파일명이 포함된 경로에서 마지막 부분에 해당하는 파일명만 추출하고 싶을 때, 아래와 같이 REVERSE 함수와 CHARINDEX 함수를 사용하여 추출이 가능합니다.
+![](/assets/posting/20190607/sql3.png)
+
+또는 시스템 이름을 가져오는 PARSENAME 함수를 활용하여 IP 주소에서 일부 주소를 추출할 수 있습니다.<br>
+![](/assets/posting/20190607/sql4.png)
+이 함수는 ‘.’ 을 구분자로 하고 뒤부터 1,2,3,~ 으로 영역이 나뉜다고 생각하시면 됩니다. PARSENAME(‘192.168.245.100’, 2) 라고 한다면 ‘245’가 추출됩니다.
+
+<br>
+<br>
+# 5. TRY_CONVERT
+CONVERT 사용 중 적절히 변환하지 못하는 오류가 발생하는 경우가 종종 있을 겁니다. 이럴 때, 오류가 발생하지 않는 TRY_CONVERT 를 사용하면 아래와 같이 변환할 수 없는 경우, NULL 이 조회됩니다. 
+![](/assets/posting/20190607/sql5.png)
+
+<br>
+<br>
+# 6. Composable DML
+마지막으로 소개할 내용은 UPDATE 나 DELETE 작업 시 로그를 남기는 쿼리 입니다. 쿼리를 여러 번 작성하거나, 소스에서 따로 처리하지 않아도 한번에 로그를 남길 수 있는 방법입니다.
+<br>
+![](/assets/posting/20190607/sql6.png)
+위 쿼리를 실행하면<br>
+dbo.Products 테이블에서 CategoryID가 2인 레코드의 UnitPrice에 1.2를 곱하여 UPDATE를 하는데, ProductID와 UnitPrice 의 업데이트 전/후 데이터를 OUTPUT으로 받아 dbo.ProductsLog 테이블에 INSERT 합니다.
+<br>
+![](/assets/posting/20190607/sql7.png) 
+마찬가지로 DELETE 쿼리에서도 deleted.ProductID를
+<br>OUTPUT으로 받아 로그 테이블에 입력할 수 있습니다.
+<br>
+<br>
+# 알고 보면 별 것 아니지만...
+알아 두면 도움이 될 수 있는 소소한 내용을 포스팅 해보았습니다.<br>
+언젠가 더 알차고 재미난 정보를 공유하도록 하겠습니다. 감사합니당!
