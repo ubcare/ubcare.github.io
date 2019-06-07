@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "ERD 협업! Aquerytool 소개"
+title: "ERD 협업! AqueryTool 소개"
 date: 2019-06-07
 author: 강성욱
 categories: Post
