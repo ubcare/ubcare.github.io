@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "SQL 소소한 팁"
+title: "SSMS 소소한 팁!"
 date: 2019-06-07
 author: 양잎새
 categories: Post
