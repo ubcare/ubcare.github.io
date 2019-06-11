@@ -34,6 +34,7 @@ cover: "/assets/puppy.jpg"
 
 옵션 창을 열어보시면 기본으로 등록된 설정이 있습니다.<br> 
 참고로 저는 아래와 같이 등록을 해두고 아주 유용하게 사용하고 있습니다.
+
 ![](/assets/posting/20190607/sql8.png)
 <br>
 <br>
