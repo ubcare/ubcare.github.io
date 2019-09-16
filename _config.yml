@@ -3,11 +3,15 @@
 gems:
   - jekyll-archives # Sorry, not GitHub pages friendly!
   - jekyll-sitemap
-  - jekyll-paginate
+#  - jekyll-paginate
 
 exclude:
   - "/vendor/"
 
+
+plugins: 
+  - jekyll-paginate
+  
 # Site settings
 title: UBcare 기술 블로그
 subtitle: U-Healthcare를 위한 도전, 창의, 혁신</br>건강한 삶을 위한 가치 창조
@@ -26,6 +30,8 @@ cover: "/assets/header_image.jpg"
 logo: "/assets/logo.png"
 
 # Build settings
+
+
 markdown: kramdown
 paginate: 5
 paginate_path: "/page:num/"
@@ -57,5 +63,3 @@ descriptions:
     desc: 
 
 social:
-  
-

@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:300,400" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <link rel="stylesheet" href="css/h3d.css">
+    <link rel="stylesheet" href="css/face.css">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="js/util.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/popup.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/event.js"></script>
+
+    <!-- code mirror -->
+    <script src="library/codemirror/lib/codemirror.js"></script>
+    <script src="library/codemirror/lib/placeholder.js"></script>
+    <link rel="stylesheet" href="library/codemirror/lib/codemirror.css">
+    <script src="library/codemirror/mode/css/css.js"></script>
+    <script src="library/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+    <script src="library/codemirror/mode/xml/xml.js"></script>
+    <script src="library/codemirror/mode/javascript/javascript.js"></script>
+
+    <script src="library/sass.js"></script>
+    <script src="library/Slider.js"></script>
+
+
+    <script>
+
+        Config.isOnlyViewMode = true;
+        $(document).ready(function(){
+            forOnlyView(true);
+        //     $('.face-scale-viewport').hide();
+        //     $('#_list_fo > p').trigger('mousedown', [true, true]);
+        //     setTimeout(function(){
+        //         Face.frontViewFace(null, true);
+        //         $('.face-scale-viewport').show();
+        //     }, 700)
+        });
+
+    </script>
+
+</head>
+
+<body oncontextmenu="return false;">
+
+    <div class="main hidden">
+        <div class="header-panel">
+            <a class="logo" title="3D Modeler">refresh</a>
+
+            <div class="left">
+                <span class="menu">File
+                    <ul>
+                        <li onclick="newPage()">New</li>
+                        <li onclick="saveData()">Save (S)</li>
+                        <li onclick="openPopup('popLoad', initLoadData, doLoadData)">Load (O)</li>
+                        <li onclick="exportData()">Export (E)</li>
+                    </ul>
+                </span>
+                <span class="menu">Style
+                    <ul>
+                        <li onclick="openPopup('popStyle', initPopStyle, confirmPopStyle);">Global Style (F2)</li>
+                        <li onclick="openPopup('popAni', initPopAni, confirmPopAni);">Animation Keyframes (F3)</li>
+                    </ul>
+                </span>
+                <span class="menu">Util
+                    <ul>
+                        <li onclick="imageConverter()">Image Converter</li>
+                    </ul>
+                    <input id="image-file" type="file" style="display: none;" onchange="changeImageFile(this);">
+                </span>
+
+                <span class="menu">Show
+                    <ul>
+                        <li onclick="slideShow()">Slide Show (F7)</li>
+                    </ul>
+                </span>
+            </div>
+        </div>
+
+        <div class="body-panel">
+
+            <div class="view-controls">
+                <button class="view-mode-toggle reverse">Finish</button>
+                <button class="view-mode-move-prev">Prev</button>
+                <button class="view-mode-move-next">Next</button>
+                <label for="view-mode-fit">
+                    <input type="checkbox" id="view-mode-fit">Fit
+                </label>
+                <div class="slider" minVal="0" maxVal="1" val="0.2"></div>
+            </div>
+
+            <!--  -->
+            <div class="contents-panel">
+
+                <div class="face-scale-viewport"><style id="style-keyframes">@keyframes spin-z-1 {
+    0% { transform: rotateZ(0deg); }
+    20% { transform: rotateZ(180deg); }
+    100% { transform: rotateZ(180deg); }
+}
+</style><style id="style-sass">.face{
+    width: 135px;
+    height: 200px;
+    overflow: hidden;
+    border-right: 0px solid #000;
+}
+.face > div{
+    position: absolute;
+    top:0;
+    left:0;
+    width: 300px;
+    height: 200px;
+    border-radius: 200px;
+    border: 0px solid #000;
+}
+#face1 > div{
+    background: rgba(255,0,0,.3)
+}
+#face2 > div{
+    background: rgba(0,0,255,.3)
+}
+#face3 > div{
+    background: rgba(245,245,10,.6)
+}
+#wrap1{ animation: spin-z-1 4s infinite; }
+#wrap2{ animation: spin-z-1 4s infinite; animation-delay: .4s;}
+#wrap3{ animation: spin-z-1 4s infinite; animation-delay: .6s;}</style>
+<style id="style-customize">.face{width:135px;height:200px;overflow:hidden;border-right:0px solid #000}.face>div{position:absolute;top:0;left:0;width:300px;height:200px;border-radius:200px;border:0px solid #000}#face1>div{background:rgba(255,0,0,0.3)}#face2>div{background:rgba(0,0,255,0.3)}#face3>div{background:rgba(245,245,10,0.6)}#wrap1{animation:spin-z-1 4s infinite}#wrap2{animation:spin-z-1 4s infinite;animation-delay:.4s}#wrap3{animation:spin-z-1 4s infinite;animation-delay:.6s}
+</style><div class="face-observer" id="fo" title="Main" style="transform: rotateX(-23.2deg) rotateY(-36.8deg) rotateZ(0deg) translateX(0px) translateY(0px) translateZ(0px);"><div class="face-group " id="wrap1" title="" style="transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg) translateX(0px) translateY(0px) translateZ(0px);
+"><div class="face" id="face1" title="" style="transform: rotateX(90deg) rotateY(0deg) rotateZ(270deg) translateX(0px) translateY(0px) translateZ(0px);"><div></div></div></div><div class="face-group" id="wrap2" title="" style="
+
+"><div class="face" id="face2" title="" style="transform: rotateX(0deg) rotateY(90deg) rotateZ(0deg) translateX(0px) translateY(0px) translateZ(0px);"><div></div></div></div><div class="face-group" id="wrap3" title="" style=""><div class="face-group" id="group1" title="" style="transform: rotateX(0deg) rotateY(0deg) rotateZ(-45deg) translateX(0px) translateY(0px) translateZ(0px);"><div class="face" id="face3" title="" style="transform: rotateX(0deg) rotateY(90deg) rotateZ(0deg) translateX(0px) translateY(0px) translateZ(0px);"><div></div></div></div></div></div></div>
+
+            </div>
+            <!--  -->
+
+            <div class="detail-panel">
+                <div class="split-bar vertical"></div>
+                <div class="face-list">
+                    <p class="title">
+                        FACE LIST
+                        <button class="face-slide-toggle" title="슬라이드 쇼에 나오는 Face"></button>
+                        <button class="face-visible-toggle" title="보기/숨기"></button>
+                    </p>
+                    <ul></ul>
+                    <div class="split-bar horizontal"></div>
+                </div>
+                <div class="face-info">
+                    <p class="title">FACE DETAIL</p>
+                    <div class="face-info-wrap">
+                        <p class="subtitle active">Attribute</p>
+                        <ul>
+                            <li>
+                                <label>ID</label>
+                                <input type="text" class="input-info" id="input-id">
+                            </li>
+                            <li>
+                                <label>Title</label>
+                                <input type="text" class="input-info" id="input-title">
+                            </li>
+                            <li>
+                                <label>Class</label>
+                                <input type="text" class="input-info" id="input-class" readonly>
+                            </li>
+                            <!-- <li class="separator"></li> -->
+                        </ul>
+
+                        <p class="subtitle active">Transform</p>
+                        <ul>
+                            <li>
+                                <label>RotateX</label>
+                                <input type="text" class="input-realtime" id="input-rx">
+                                <span class="unit">deg</span>
+                            </li>
+                            <li>
+                                <label>RotateY</label>
+                                <input type="text" class="input-realtime" id="input-ry">
+                                <span class="unit">deg</span>
+                            </li>
+                            <li>
+                                <label>RotateZ</label>
+                                <input type="text" class="input-realtime" id="input-rz">
+                                <span class="unit">deg</span>
+                            </li>
+                            <li>
+                                <label>TranslateX</label>
+                                <input type="text" class="input-realtime" id="input-tx">
+                                <span class="unit">px</span>
+                            </li>
+                            <li>
+                                <label>TranslateY</label>
+                                <input type="text" class="input-realtime" id="input-ty">
+                                <span class="unit">px</span>
+                            </li>
+                            <li>
+                                <label>TranslateZ</label>
+                                <input type="text" class="input-realtime" id="input-tz">
+                                <span class="unit">px</span>
+                            </li>
+                            <li>
+                                <label>Style</label>
+                                <textarea class="input-realtime" id="input-style" spellcheck="false" placeholder="ex) width: 100px; color: #FFF;"></textarea>
+                            </li>
+                        </ul>
+
+                        <!-- <div class="input-html-area">
+                            <p class="subtitle active">Inner HTML</p>
+                            <ul>
+                                <li>
+                                    <textarea class="" id="input-inner-html" spellcheck="false" placeholder="html here..."></textarea>
+                                </li>
+                            </ul>
+                        </div> -->
+
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Popup Image Converter -->
+    <div class="popup" id="popImageData">
+        <div class="popup-wrap">
+            <div class="popup-contents"  width="600px" height="600px">
+                <div class="max-window" title="최대화"></div><div class="close" title="닫기"></div>
+                <div class="popup-header">Image Data</div>
+                <div class="popup-body">
+                    <textarea id="image-data-text" readonly></textarea>
+                </div>
+                <div class="popup-footer">
+                    <span class="action-msg hidden">Copied data !!</span>
+                    <span>
+                        <button class="btn-copy">Copy</button>
+                        <button class="btn-close">Close</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Popup Load -->
+    <div class="popup" id="popLoad">
+        <div class="popup-wrap">
+            <div class="popup-contents"  width="600px" height="600px">
+                <div class="max-window" title="최대화"></div><div class="close" title="닫기"></div>
+                <div class="popup-header">Load</div>
+                <div class="popup-body">
+                    <textarea id="load-data-text" placeholder="데이터를 넣어주세요"></textarea>
+                </div>
+                <div class="popup-footer">
+                    <span class="action-msg hidden"></span>
+                    <span>
+                        <button class="btn-confirm">Load</button>
+                        <button class="btn-close">Close</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Popup Help -->
+    <div class="popup" id="popHelp">
+        <div class="popup-wrap">
+            <div class="popup-contents"  width="600px" height="600px">
+                <div class="max-window" title="최대화"></div><div class="close" title="닫기"></div>
+                <div class="popup-header">Help</div>
+                <div class="popup-body">
+                    <ul class="desc-list">
+                        <li>마우스 왼쪽버튼 누른 상태로 움직이면 X축 or Y축 회전</li>
+                        <li>마우스 왼쪽버튼 + Shift 누른 상태로 움직이면 Z축 회전</li>
+                        <li>마우스 오른쪽버튼 누른 상태로 움직이면 X축 or Y축 이동</li>
+                        <li>마우스 오른쪽버튼 + Shift 누른 상태로 움직이면 Z축 이동</li>
+                        <li>마우스 휠클릭 + Ctrl 누른 상태로 움직이면 확대 or 축소</li>
+
+                        <li>Ctrl+Z undo</li>
+                        <li>Ctrl+Shift+Z redo</li>
+                        <li>화면 오른쪽 상단에서 Sample 선택가능</li>
+                    </ul>
+                </div>
+                <div class="popup-footer">
+                    <span class="action-msg hidden"></span>
+                    <span>
+                        <button class="btn-close">Close</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="popup" id="popConfirm">
+        <div class="popup-wrap">
+            <div class="popup-contents"  width="300px">
+                <div class="close" title="닫기"></div>
+                <div class="popup-header"></div>
+                <div class="popup-body">
+                </div>
+                <div class="popup-footer">
+                    <span class="action-msg hidden"></span>
+                    <span>
+                        <button class="btn-close">취소</button>
+                        <button class="btn-ok reverse"></button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Popup Style -->
+    <div class="popup" id="popStyle">
+        <div class="popup-wrap">
+            <div class="popup-contents"  width="600px" height="600px">
+                <div class="max-window" title="최대화"></div><div class="close" title="닫기"></div>
+                <div class="popup-header">Customize Style Sheet</div>
+                <div class="popup-body">
+                    <textarea class="pop-textarea" placeholder="Css here..."></textarea>
+                </div>
+                <div class="popup-footer">
+                    <span class="action-msg hidden"></span>
+                    <span>
+                        <button class="btn-confirm">Apply (S)</button>
+                        <button class="btn-close">Cancel</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Popup animation css -->
+    <div class="popup" id="popAni">
+        <div class="popup-wrap">
+            <div class="popup-contents"  width="600px" height="600px">
+                <div class="max-window" title="최대화"></div><div class="close" title="닫기"></div>
+                <div class="popup-header">Animation Keyframes</div>
+                <div class="popup-body">
+                    <textarea class="pop-textarea" placeholder="Write here..."></textarea>
+                </div>
+                <div class="popup-footer">
+                    <span class="left-side">
+                        <button class="btn-load-ani">Load default</button>
+                    </span>
+                    <span>
+                        <button class="btn-confirm">Apply (S)</button>
+                        <button class="btn-close">Cancel</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Popup Edit HTML -->
+    <div class="popup" id="popHtml">
+        <div class="popup-wrap">
+            <div class="popup-contents" width="600px" height="600px">
+                <div class="max-window" title="최대화"></div><div class="close" title="닫기"></div>
+                <div class="popup-header">Edit inner HTML <span></span></div>
+                <div class="popup-body">
+                    <textarea class="pop-textarea" placeholder="Html code here..."></textarea>
+                </div>
+                <div class="popup-footer">
+                    <span class="action-msg hidden"></span>
+                    <span>
+                        <button class="btn-confirm">Apply (S)</button>
+                        <button class="btn-close">Cancel</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- tree context -->
+    <div class="context-layer" id="tree-context">
+        <ul>
+            <li class="has-sub">
+                추가
+                <div class="sub-context">
+                    <div class="context-item-add-group" onclick="Tree.Context.addFaceChild(this,1)">하위에 Face그룹 추가</div>
+                    <div class="context-item-add-face" onclick="Tree.Context.addFaceChild(this,2)">하위에 Face 추가</div>
+                </div>
+            </li>
+            <li class="context-item-mod-html" onclick="Tree.Context.editInnerHtml(this)">HTML 수정 (F4)</li>
+            <li class="context-item-view-face" onclick="Tree.Context.frontViewFace(this)">Face 정면보기</li>
+            <li class="context-item-copy-append" onclick="Tree.Context.makeClone(this)">복사 후 생성</li>
+            <li class="context-item-delete" onclick="Tree.Context.deleteListItem(this)">삭제</li>
+        </ul>
+    </div>
+</body>
+
+</html>

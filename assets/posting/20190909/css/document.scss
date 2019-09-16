@@ -1,0 +1,120 @@
+*{margin:0;box-sizing:border-box}
+html,body,button,pre,input,select,textarea{
+    font-family: 'Noto Sans KR', sans-serif;
+}
+html,body{
+    font-size: 18px;
+    font-weight: 300;
+}
+pre {
+    line-height: 2em;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    color: inherit;
+    code{
+        font-family: 'consolas', sans-serif;
+        line-height: 1.4em;
+    }
+    strong{
+        font-weight: 300;
+        text-decoration: underline;
+    }
+    b{
+        font-weight: 500;
+    }
+    img{
+        display: block;
+        margin: 0 auto;
+    }
+    .button{
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Noto Sans KR', sans-serif;
+        height: 26px;
+        border-radius: 4px;
+        padding: 0 10px;
+        background: #ff5252;
+        color: #fff;
+        border: 0;
+        outline: 0;
+        font-size: 12px;
+        font-weight: 400;
+        margin-right: 4px;
+        vertical-align: 2px;
+    }
+
+
+}
+body{
+    padding: 20px;
+    color: #24292e;
+}
+iframe{
+    width: 100%;
+    height: 555px;
+    border: 0;
+    // box-shadow: 0 1px 0 #686868,1px 0 0 #686868,0 -1px 0 #686868,-1px 0 0 #686868;
+    border: 1px solid #686868;
+}
+.ps{
+    font-size: 14px;
+    font-weight: 400;
+}
+h1{
+    margin: 20px 0 0 0;
+    padding: 0 0 5px 0;
+    border-bottom: 1px solid #ddd;
+    font-size: 2em;
+}
+h3{
+    position: relative;
+    margin: 40px 0 10px 0;
+    padding: 0 0 5px 0;
+    font-weight: 400;
+    font-size: 1.5em;
+    &:after{
+        content:'';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100px;
+        height: 4px;
+        background: #ddd;
+
+    }
+}
+.ex-box{
+    display: block;
+    border: 1px solid #ccc;
+    // margin-top: 10px;
+    padding: 10px 20px;
+}
+.ex-box2{
+    display: block;
+    // margin-top: 10px;
+    // padding: 20px;
+}
+.ex-txt1{
+    font-size: 60px;
+    font-weight: 500;
+    &.shadow{
+        text-shadow: 0 3px 6px rgba(0,0,0,.7);
+    }
+}
+.ex-box1{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 300px;
+    height: 100px;
+    font-size: 30px;
+    font-weight: 400;
+    color: #666;
+    border: 1px solid #ccc;
+    &.shadow{
+        border: 0;
+        box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.3);;
+    }
+}

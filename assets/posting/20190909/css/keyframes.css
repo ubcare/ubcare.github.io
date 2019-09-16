@@ -1,0 +1,20 @@
+@keyframes spin-xy {
+    0% {transform: rotateX(0deg) rotateY(0deg);}
+    100% {transform: rotateX(360deg) rotateY(360deg);}
+}
+@keyframes spin-x {
+    0% {transform: rotateX(0deg) rotateY(0deg);}
+    100% {transform: rotateX(360deg) rotateY(0deg);}
+}
+@keyframes spin-y {
+    0% { transform: rotateX(0deg) rotateY(0deg); }
+    100% { transform: rotateX(0deg) rotateY(360deg); }
+}
+@keyframes spin-y-reverse {
+    0% { transform: rotateX(0deg) rotateY(0deg); }
+    100% { transform: rotateX(0) rotateY(-360deg); }
+}
+@keyframes spin-z {
+    0% { transform: rotateZ(0deg); }
+    100% { transform: rotateZ(360deg); }
+}

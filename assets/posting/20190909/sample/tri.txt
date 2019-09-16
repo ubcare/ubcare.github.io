@@ -1,0 +1,10 @@
+<div class="face-scale-viewport" style="transform: scale(1);"><style id="style-customize">.face{
+    border: 0;
+    height: 320px;
+    width: 200px;
+    background: url(images/tri.svg) no-repeat;
+    background-size: 100% 50%;
+}</style>
+                                    <div class="face-observer" id="fo" title="" style="transform: rotateX(-17.4deg) rotateY(354.4deg) rotateZ(0deg) translateX(0px) translateY(0px) translateZ(0px);">
+                                    <div class="face-group" id="group-up" title=""><div class="face-group " id="group1" title="" style="transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg) translateX(0px) translateY(0px) translateZ(100px);"><div class="face" id="face1" title="" style="transform: rotateX(38.7deg) rotateY(0deg) rotateZ(0deg) translateX(0px) translateY(0px) translateZ(0px);"></div></div><div class="face-group " id="group2" title="" style="transform: rotateX(0deg) rotateY(90deg) rotateZ(0deg) translateX(0px) translateY(0px) translateZ(100px);"><div class="face" id="face2" title="" style="transform: rotateX(38.7deg) rotateY(0deg) rotateZ(0deg) translateX(0px) translateY(0px) translateZ(0px);"></div></div><div class="face-group " id="group3" style="transform: rotateX(0deg) rotateY(180deg) rotateZ(0deg) translateX(0px) translateY(0px) translateZ(100px);" title=""><div class="face" id="face3" title="" style="transform: rotateX(38.7deg) rotateY(0deg) rotateZ(0deg) translateX(0px) translateY(0px) translateZ(0px);"></div></div><div class="face-group " id="group4" title="" style="transform: rotateX(0deg) rotateY(-90deg) rotateZ(0deg) translateX(0px) translateY(0px) translateZ(100px);"><div class="face" id="face4" title="" style="transform: rotateX(38.7deg) rotateY(0deg) rotateZ(0deg) translateX(0px) translateY(0px) translateZ(0px);"></div></div></div></div>
+                                </div>

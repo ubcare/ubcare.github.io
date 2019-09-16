@@ -1,0 +1,61 @@
+.h3d {
+  font-family: 'Roboto', 'Noto Sans KR', sans-serif;
+  position: relative;
+  perspective: 3000px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box !important;
+}
+
+.h3d * {
+  box-sizing: border-box;
+}
+
+.face-scale-viewport {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  perspective: 3000px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.face-observer {
+  transform-style: preserve-3d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.face-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  transform-style: preserve-3d;
+}
+
+.example .face, .sample .face {
+  border: 1px solid #333;
+}
+
+.face {
+  position: absolute;
+  transform-style: preserve-3d;
+}
+
+.face.round {
+  width: 200px;
+  height: 200px;
+  border-radius: 100%;
+}
+
+.face.red {
+  background-color: rgba(255, 0, 0, 0.5);
+}
+
+.face.yellow {
+  background-color: rgba(255, 255, 0, 0.2);
+}
