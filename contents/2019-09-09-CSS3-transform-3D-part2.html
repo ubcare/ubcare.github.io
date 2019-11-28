@@ -49,11 +49,11 @@
 3D 모델러는 웹프로그램 형태로 개발되었고 상단 메뉴와 오른쪽 트리구조, 속성창 등 흔한 개발 프로그램의 화면을 가지고 있습니다.
 하지만 이 프로그램은 일반적인 구조인 웹서버-DB가 아닌 로컬에 모든 것을 두고 사용하는 구조입니다. 무슨말인가 하면 따로 설치가 필요없이 아래와 같이 로컬에 프로그램 파일을 놓고 index.html파일을 실행하면 브라우저를 통해 사용할 수 있다는 것입니다.
 
-<img src="http://192.168.245.233:10280/힣_실험실/3D-Modeler_ubcare/assets/posting/20190909/images/img1.png">
+<img src="/assets/posting/20190909/images/img1.png">
 따라서 결과물도 로컬에 저장이 되고 불러오기도 로컬에 저장된 파일을 통해 이루어집니다.
 아래 화면에서 <b>메뉴 - File - Save</b> 를 클릭해보세요. 로컬로 Data파일이 다운되는 것을 확인할 수 있습니다.
 
-<iframe src="http://192.168.245.233:10280/힣_실험실/3D-Modeler_ubcare/assets/posting/20190909/practice.html"></iframe>
+<iframe src="/assets/posting/20190909/practice.html"></iframe>
 
 저장한 Data파일을 열어보면 아래와 같이 html로 데이터가 저장되는 것을 볼 수 있습니다.
 <code class="html">&lt;div class="face-scale-viewport"&gt;
@@ -69,7 +69,7 @@
 </pre>
 <h3>3D 모델러 기본</h3>
 <pre>
-<iframe src="http://192.168.245.233:10280/힣_실험실/3D-Modeler_ubcare/assets/posting/20190909/practice.html"></iframe>
+<iframe src="/assets/posting/20190909/practice.html"></iframe>
 "안녕하세요"가 표시되는 간단한 Face를 만들어보겠습니다.
 아래 순서에 따라 프로그램에서 적용해보세요!
     ① <b>FACE LIST</b> 에서 <b>fo</b>을 마우스 오른쪽 클릭해서 <b>하위에 Face 추가</b>를 해주세요.
@@ -88,13 +88,13 @@
 }</code>
 위 과정을 진행하면 아래와 같이 하얀색 네모에 "안녕하세요"가 표시된 face를 확인하실 수 있습니다.
 생성된 네모모양의 face를 마우스 왼쪽 클릭해서 드래그 해보세요. face가 마우스 움직임에 따라 회전을 하게 되고, 마우스 오른쪽으로 클릭하여 움직이면 XYZ좌표로 이동을 하게됩니다. 변형된 정보들은 오른쪽 FACE DETAIL 내에 실시간으로 표시됩니다.
-<iframe src="http://192.168.245.233:10280/힣_실험실/3D-Modeler_ubcare/assets/posting/20190909/p1.html"></iframe>
+<iframe src="/assets/posting/20190909/p1.html"></iframe>
 
 </pre>
 
 <h3>3D 모델러 응용</h3>
 <pre>
-<iframe src="http://192.168.245.233:10280/힣_실험실/3D-Modeler_ubcare/assets/posting/20190909/practice.html"></iframe>
+<iframe src="/assets/posting/20190909/practice.html"></iframe>
 하나의 face를 구현해봤으니 이제는 6개의 face를 이용한 구모양을 만들어 보겠습니다.
     ① <b>FACE LIST</b> 에서 <b>fo</b>을 마우스 오른쪽 클릭해서 Face 6개를 추가해주세요.
     ② 메뉴 - Style - <b>Global Style</b> 선택하고 아래 내용을 넣어주세요.
@@ -115,7 +115,7 @@
 위 단계들은 원모양의 face를 Y축으로 30도씩 회전시키면서 구의 형태를 만드는 과정입니다. 30도가 아닌 더 작은 각도로 원을 회전시켜서 위치한다면 완벽한 구에 가까워지겠죠? 하지만 위에도 언급했듯이 브라우저에 많은 부하가 발생할 것입니다.
 
 만약 face간의 각도를 10도로 한다면 아래와 같은 구를 만들 수 있습니다.
-<iframe src="http://192.168.245.233:10280/힣_실험실/3D-Modeler_ubcare/assets/posting/20190909/p2.html"></iframe>
+<iframe src="/assets/posting/20190909/p2.html"></iframe>
 </pre>
 
 <h3>3D 모델러 활용</h3>
@@ -123,21 +123,21 @@
 3D 모델러 내에서 만들기만 하고 실제 웹페이지에서 사용할 수 없다면 위의 작업들은 큰 의미가 없을 것입니다. 그래서 프로그램에서는 Export 기능을 제공하여 프로그램에서 만들어진 3D모델을 실제 웹페이지에 적용할 수 있습니다.
 
 아래 모델은 의사랑의 마크를 3D로 구현하고 animation을 적용한 모습입니다. 반원모양의 도형 3개가 어우어져 순서에 맞게 회전하고 있습니다.
-<iframe src="http://192.168.245.233:10280/힣_실험실/3D-Modeler_ubcare/assets/posting/20190909/p3.html"></iframe>
+<iframe src="/assets/posting/20190909/p3.html"></iframe>
 
 <b>메뉴 - File - Export</b>를 클릭하면 html코드 형태의 데이터를 받을 수 있고 추출된 코드를 의사랑 홈페이지에 넣는 다면 아래와 같이 구성할 수 있습니다.
-<iframe src="http://192.168.245.233:10280/힣_실험실/3D-Modeler_ubcare/assets/posting/20190909/p4.html" style="height: 500px;"></iframe>
+<iframe src="/assets/posting/20190909/p4.html" style="height: 500px;"></iframe>
 어떤가요? 좀 더 다이나믹해지지 않았나요?
 
 또한 아래처럼 다양한 모델을 만들수도 있습니다.
-<iframe src="http://192.168.245.233:10280/힣_실험실/3D-Modeler_ubcare/assets/posting/20190909/e1.html"></iframe>
+<iframe src="/assets/posting/20190909/e1.html"></iframe>
 <p style="text-align:center;"><b>무지개빛 다이아</b></p>
 
-<iframe src="http://192.168.245.233:10280/힣_실험실/3D-Modeler_ubcare/assets/posting/20190909/e2.html"></iframe>
+<iframe src="/assets/posting/20190909/e2.html"></iframe>
 <p style="text-align:center;"><b>공전</b></p>
 
 3D모델러에서는 단순히 3D모델을 만드는 것 뿐만 아니라 입체적인 웹페이지의 구성이 가능합니다. Next버튼으로 페이지를 전환해보세요.
-<iframe src="http://192.168.245.233:10280/힣_실험실/3D-Modeler_ubcare/assets/posting/20190909/e3.html"></iframe>
+<iframe src="/assets/posting/20190909/e3.html"></iframe>
 </pre>
 
 <h3>끝</h3>
