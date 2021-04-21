@@ -18,7 +18,7 @@ cover: "/assets/fullstack.jpg"
 <br>
 
 # Four Part Naming
-아래 쿼리문은 [CSAMDB\CSAM] DB서버에 고객정보가 저장되어 있고, 다른 DB서버에서 그 서버의 정보를 조회하는 쿼리입니다.
+아래 쿼리문은 특정 DB서버에 고객정보가 저장되어 있고, 다른 DB서버에서 그 서버의 정보를 조회하는 쿼리입니다.
 
 이 중 FROM 절에 사용된 [서버명].[DB명].[소유자명].[테이블명] 과 같이 사용하는 것을 **Four Part Naming** 이라고 합니다.
 
