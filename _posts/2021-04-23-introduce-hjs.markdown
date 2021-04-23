@@ -76,6 +76,7 @@ cover: "/assets/orange-trees.jpg"
 #### 11. 요즘 듣고계시는 노동요 있으면 하나 추천해주세요.
 요즘 <SG워너비> 노래를 무한 반복하고 있어요. 최근 예능 놀면뭐하니에 SG워너비가 나와서 재밌게 보고 있는데 중고등학생 때 좋아하던 노래를 다시 들으니 너무 추억 돋더라구요.
 특히 전주부터 어깨가 들썩여지는 <라라라> 추천합니다!
+<iframe width="727" height="409" src="https://www.youtube.com/embed/XbhBXmWmPug" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <br><br>
 
 #### 12. 마지막으로 이걸 보고계시는 동료분들께 편하게 한마디 해주세요.

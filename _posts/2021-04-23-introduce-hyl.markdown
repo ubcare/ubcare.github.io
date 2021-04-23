@@ -62,9 +62,7 @@ D마트라 불리우는 앱을 개발하고 있습니다. 웹서버도 만들고
 
 #### 11. 요즘 듣고계시는 노동요 있으면 하나 추천해주세요.
 Drive (feat. George)(죠지) 입니다.
-
-[![Drive (feat. George)](https://img.youtube.com/vi/a290srGkawg/0.jpg)](https://www.youtube.com/watch?v=a290srGkawg "Drive (feat. George)")
-
+<iframe width="364" height="321" src="https://www.youtube.com/embed/a290srGkawg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <br><br>
 
 #### 12. 마지막으로 이걸 보고계시는 동료분들께 편하게 한마디 해주세요.
