@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "[UB인터뷰] 인재경영팀의 샛별 성현정님"
-date: 2021-04-08
+date: 2021-04-23
 author: UB인터뷰
 categories: Post
 //tag : database,query,erd
