@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "[UB인터뷰] 정보전략유닛의 수장, 류세현 유닛장님"
+title: "[UB인터뷰] 정보전략유닛의 대장, 류세현 유닛장님"
 date: 2021-05-14
 author: UB인터뷰
 categories: Post
