@@ -1,0 +1,650 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>R in SQL</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="da31ba45-849c-4179-b26b-f18b8780dc88" class="page sans"><header><h1 class="page-title">R in SQL</h1></header><div class="page-body"><p id="fa4c561b-570d-49a4-bdf7-cfab26546319" class=""> 작금의 시대를 살아가면서 데이터<strong>의</strong> 중요성은 다시 설명하지 않아도 되는 사실이 되었습니다. 수많은 데이터가 제공하는 정보를 찾아내고 가공해서 인사이트를 발견하는 것이 우리의 행동에 근거를 더 해 주고 있습니다. Data-Driven을 통한 의사결정이 방향에 대해 확신을 심어주는 것입니다. 그로인해 데이터를 소유하는 것과 데이터를 다루는 기술이 자연스럽게 스포트라이트를 받았습니다. 이 글에서는 데이터를 저장하고 관리하는 SQL DB와 데이터를 다루는 언어인 <strong>R</strong>이 <strong>새로운 방식</strong>으로 어떻게 작동하는지 간단하게 살펴보겠습니다.</p><p id="8181c2be-f386-4067-8fbf-78d1d443fd6f" class="">
+</p><hr id="15f33832-4ef0-4e43-b34b-5284a20f576b"/><p id="26f1cc88-76f7-4ba3-bc17-4382b215fa76" class="">
+</p><blockquote id="be9c9e12-e1d0-47bb-8a44-1f292b74beb8" class=""><strong>&#x27;R&#x27;이 뭐에요?</strong></blockquote><figure id="6e493845-ed8e-434d-84ec-0879b3b68d4b" class="image"><a href="/assets/posting/20210628/R.png"><img style="width:720px" src="/assets/posting/20210628/R.png"/></a></figure><p id="04190dfe-4c55-460b-92ed-355b35ba47b7" class="">R은 <del>(창조)</del>목적 부터 데이터를 다루기 위해 만들어졌습니다. 데이터를 탐색하고 표현하며, 분석하여 유의미한 결과를 내는 것을 목적으로 통계학자들의 요구로부터 탄생되었습니다. 그렇게 탄생한 R은 데이터에 관심 있는 모두가 사용할 수 있도록 무료로 제공되고 있습니다.</p><div id="43e1bb51-b6b2-461b-bd4e-0fc62030426f" class="column-list"><div id="2cc121f2-7651-48c2-8765-c21a5884760c" style="width:50%" class="column"><ul id="5247c1ff-db2a-4466-bd2c-11500fd19d93" class="bulleted-list"><li>In-Memory Computing</li></ul></div><div id="b62a7848-ad57-48a9-a5f7-6e84bab6017b" style="width:50.000000000000014%" class="column"><ul id="7baa4ec1-8d25-47ea-ad56-cc88162f50b7" class="bulleted-list"><li>Package</li></ul></div></div><div id="7290c136-b892-4203-af93-3be03e5220f3" class="column-list"><div id="ed9b2f53-2b98-453a-985b-b0f8e9b000da" style="width:50%" class="column"><ul id="0b46f2d1-abc9-4721-bae0-fb274974ba07" class="bulleted-list"><li>Object-oriented Programming</li></ul></div><div id="c444aeca-3af8-4969-b44d-e1ec634b9550" style="width:50%" class="column"><ul id="ad327492-d5e7-4aef-8183-f47224b79145" class="bulleted-list"><li>Free</li></ul></div></div><figure id="262d05e6-dc09-42ac-ab7a-b7aa185c7740" class="image"><a href="/assets/posting/20210628/R1.png"><img style="width:720px" src="/assets/posting/20210628/R1.png"/></a></figure><p id="1c54fd44-c666-4e2e-a5bb-d56e89f2dc9c" class="">다양한 통계분석부터, 데이터 분석을 위한 데이터 전처리, 데이터 변환, 시각화 등을 구현할 수 있도록 지원해주고 있습니다. 또한 머신러닝을 구현할 수 있는 다양한 패키지도 제공하고 있어, 통계전문가, 분석가들 뿐만 아니라, 데이터를 다루는 것에 관심있는 모두에게 인기가 많은 언어입니다.</p><p id="0686d43e-7623-49f5-b0ed-7c9f4a53c69f" class="">
+</p><hr id="a2395b6d-6444-4505-b41a-4ee79c0a67bd"/><p id="31661cee-e2dd-4f3f-b2e2-09ba0c83ee61" class="">
+</p><blockquote id="92cf0196-b78d-4142-91c3-0e1ea1cbb0ef" class=""><strong>SQL 내에서 R 사용하기</strong></blockquote><p id="a72ca63e-b403-4edd-b54d-27a40181c7b1" class=""> R은 데이터를 다루는 언어이고, 대부분의 데이터는 따로 저장되어 있습니다. 개인의 PC에 있기도 하고, 그보다 발전된 형태라면 DB를 구축하고 DB에 데이터를 보관하고 있을 것입니다. R은 In-Memory 방식이기 때문에, 데이터를 R의 메모리에 불러와야 분석이 가능합니다. 전통의 방법은 RDBMS와 R을 연동해서 DB로부터 필요한 데이터를 불러와 R에 Load해 데이터분석을 진행합니다. 데이터 분석의 결과를 다시 DB에 저장하거나 새로운 형태로 표출하는 것으로 데이터 분석은 마무리 됩니다. </p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="86bee30a-5688-4806-a881-7d789aa7d566"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">R에 Load된 데이터를 마음대로 바꾸어도 원본데이터(DB)에는 영향을 주지 않는다.</div></figure><figure id="a47bacf0-f135-454f-abce-770f95f9df0a" class="image"><a href="/assets/posting/20210628/R2.png"><img style="width:624px" src="/assets/posting/20210628/R2.png"/></a><figcaption>                                                             [기존 데이터 분석 방법]</figcaption></figure><p id="e5a012b5-c98f-4861-b023-62b4b44dd01f" class="">
+</p><p id="ba241298-566f-43fe-b7d5-ee55409e5d9b" class="">DB와 R간의 연결이 이루어져야 데이터 Load가 가능해지고 그렇게 Load된 데이터로 분석을 진행하는 방법이 전통적인 방법이라면, 이번에 <strong>새로운 방법</strong>을 소개하려 합니다.</p><p id="cb76ce12-2508-4282-a312-7c801d89b09d" class="">MSSQL에서 제공하는 기능인 R in SQL을 활용하면 DB와 R이 각각 연동되어야 분석을 할 수 있는 것이 아닌 SQL내에서 R 스크립트를 실행 시킬 수 있게 됩니다. 즉, <strong>데이터의 이동없이</strong> DB내에서 R 스크립트를 통해 분석이 가능하고, 더 나아가 생성된 머신러닝 모델 자체를 저장하고 꺼내쓰는 작업까지 가능하게 되는 것입니다.</p><p id="97ff4296-09a0-4e17-85e0-3c27512518e3" class="">
+</p><figure id="c631b543-5133-4790-9969-09ad3622e432" class="image"><a href="/assets/posting/20210628/R3.png"><img style="width:1177px" src="/assets/posting/20210628/R3.png"/></a></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="451c4dfe-1272-4d19-a169-40181f0caf49"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">R Services 
+= SQL Server R Services = SQL Server 2016 R Services = SQL Machine Learning Services
+4개의 용어 모두 R in SQL을 지칭하는 용어이고, 시점에 따라 변경된 것이다. </div></figure><p id="3b4eb89e-b650-4c26-8117-1a7063ad6430" class="">
+</p><hr id="9ac19230-c89b-4d2c-9ad5-71f512362a23"/><p id="81f92ff6-594c-4134-b3d7-153bd4cf3a74" class="">
+</p><blockquote id="89bab867-bba0-4fa0-b80c-c3b4b65aa64b" class="">스크립트 실행</blockquote><p id="0ac7d66e-ea64-49ff-b525-5791eb3609a3" class="">R의 기본적은 문법은 알고 있다는 가정하에, SQL 내에서 R을 실행시키는 방법을 살펴봅니다.</p><figure id="b4d63176-dd97-4ba3-998d-e7c4e049ef2d" class="image"><a href="/assets/posting/20210628/R4.png"><img style="width:1202px" src="/assets/posting/20210628/R4.png"/></a></figure><p id="8b09da2d-02cf-457d-9a96-2bcd3026ec79" class="">SQL에서 R 스크립트를 실행하려면, R스크립트를 시스템 저장 프로시저 <mark class="highlight-gray_background">sp_execute_external_script</mark>에 대한 인수로 전달해야 합니다. 데이터의 Load 없이 R 스크립트 자체의 문법을 실행시킬 수도 있습니다.</p><p id="f2e64c74-487d-4c89-a6df-d157a0c682e9" class="">
+</p><figure id="3de9467a-2ffa-494c-a98f-0400f10b92ba" class="image"><a href="/assets/posting/20210628/R5.png"><img style="width:1246px" src="/assets/posting/20210628/R5.png"/></a></figure><p id="9bdf645a-83b8-474d-a616-5146a6cba00a" class="">SQL에서 사용할 언어, Input_Data, Output_Data의 타입을 정의한 후 실행시킬 스크립트를 작성하여 실행합니다.</p><p id="a25a1392-60e1-4b08-96ae-a35aee899951" class="">
+</p><figure id="a35d9547-7d1a-4f72-937c-b4501e12fa23" class="image"><a href="/assets/posting/20210628/R6.png"><img style="width:1238px" src="/assets/posting/20210628/R6.png"/></a></figure><p id="3fac9c39-6d54-458a-bd10-57719b8cf11d" class="">SQL에서 가져온 Input_Data와 R자체에서 생성한 데이터간의 데이터핸들링 작업도 가능합니다. SQL 내에서 단순히 R의 문법을 사용하는 것이 아니라, R에서 실행할 수 있는 기능들도 지원하고 있습니다.</p><p id="9da33b48-30cb-4d92-927a-27d235607792" class="">
+</p><figure id="f0d3d3be-5af7-4c33-9a82-083fa160f02c" class="image"><a href="/assets/posting/20210628/R7.png"><img style="width:1238px" src="/assets/posting/20210628/R7.png"/></a></figure><p id="72814660-fec6-4927-bdd7-d3eaafd262f6" class="">SQL 내에서 R의 문법을 지원하는 것은 위에서 이미 살펴보았습니다. R in SQL에서 더 주목할 점은, 변동하는 값들에 대해 파라미터로 전달 할 수 있다는 것입니다. R스크립트에 고정된 값의 데이터만 전달하는것이 아니라, 때에 따라 변화하는 값을 <strong>파라미터로 전달</strong> 할 수 있습니다. R 스크립트 내에서 파라미터를 인자로 받아 데이터 처리가 가능함은 실로 유용하지 않을 수 없습니.</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="b6942982-e42e-414d-b075-733ec7a3565d"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">R 스크립트에 SQL 파라미터로 인자 전달 가능 !</div></figure><p id="1e42adb2-5334-4e50-93a7-02fa118c8f36" class="">
+</p><hr id="95042bfc-e2d9-4e6a-a2d7-92350e1cf809"/><p id="d14b155d-39da-4552-8a6e-aafaace3849f" class="">
+</p><blockquote id="8ffd2437-00d8-4c66-9754-6a3da39a0946" class="">SQL 내에서 ML 모델 생성/저장/호출/실행 </blockquote><p id="30aaad17-ccde-49e0-afd4-599ee197d0bd" class="">
+</p><h3 id="9333ac23-fe04-4386-b5d1-e52f7cec9baf" class="">모델을 생성하는 저장 프로시저 만들기</h3><figure id="0e34d4aa-41ff-4688-b5c7-28efd96eb7a5" class="image"><a href="/assets/posting/20210628/R8.png"><img style="width:720px" src="/assets/posting/20210628/R8.png"/></a></figure><ol id="2601a49c-5a6a-4dbb-a129-f8a45d7313a9" class="numbered-list" start="1"><li>SQL로 부터 Input_Data를 받아 Machine Learning 모델을 만드는 R 스크립트를 저장합니다. </li></ol><ol id="02ed3c04-b72d-4709-92c1-b0c857912e5b" class="numbered-list" start="2"><li>R에서 생성된 머신러닝 모델을 SQL DB에 저장할 수 있도록 serialize화 한 후 Output으로 전달합니다. </li></ol><ol id="86b5fc7e-14c1-4b0b-a5b7-cc0191a93744" class="numbered-list" start="3"><li>이 일련의 과정을 (Input_Data를 학습하여 머신러닝 모델 생성하는 과정) 프로시저로 통해 구현합니다.</li></ol><p id="f9ba015a-4310-46ec-ac1a-f73a8689c106" class="">
+</p><h3 id="ee8d9f66-e754-4f52-95f0-3e762c1caaf7" class="">모델을 데이터베이스에 저장</h3><figure id="2925bfe7-b345-475c-9a44-b20a2e3f197a" class="image"><a href="/assets/posting/20210628/R9.png"><img style="width:1241px" src="/assets/posting/20210628/R9.png"/></a></figure><ol id="f073e994-b983-4824-8588-bc103db3cdd8" class="numbered-list" start="1"><li>머신러닝 모델을 저장할 테이블을 생성한 후, 전 단계에서 만든 &#x27;머신러닝 모델을 생성하는 프로시저&#x27;를 실행합니다. </li></ol><ol id="b39ff8de-3abd-4e93-b303-9c2f587f9488" class="numbered-list" start="2"><li>실행의 결과로 머신러닝 모델이 Output으로 반환되면, 반환된 모델을 테이블에 저장합니다.</li></ol><p id="61e5628a-3894-4f25-88aa-d7f443437216" class="">
+</p><h3 id="35667cee-992d-42d3-b8a5-6ca02fa9fa2c" class="">예측을 수행하는 저장 프로시저 생성</h3><p id="56583159-feb3-4003-9c75-a9277bd9d437" class="">생성된 머신러닝 모델에 새로운 데이터를 입력하여 예측결과를 반환하고 싶은 요구가 있습니다. 기존에 &#x27;Train Data를 통해 생성한 머신러닝 모델&#x27;을 호출한 후 새로운 데이터를 입력하여 예측값을 확인해 봅니다. </p><figure id="56025cfe-af2f-43ee-b6e4-6a90c26a7f0b" class="image"><a href="/assets/posting/20210628/R10.png"><img style="width:1241px" src="/assets/posting/20210628/R10.png"/></a></figure><ol id="6006c8f9-ad5b-4933-bc9c-18cc2536af11" class="numbered-list" start="1"><li>모델을 저장하는 테이블에서 &#x27;기존에 만든 머신러닝 모델&#x27;을 호출하여 R 스크립트에 인자값으로 넘겨줍니다. 모델을 전달하면서 새로운 Input_Data 또한 같이 넘겨줍니다.</li></ol><ol id="19c79e08-1f60-4a44-afd5-0d1581d7b711" class="numbered-list" start="2"><li>R 스크립트에 넘어온 모델은 Serialize되어있으므로, 해당 모델을 Unserialize를 통해 모델의 형태로 변형해준다. </li></ol><ol id="b46e80c6-848e-49d2-ac3c-48c2d5b6adf5" class="numbered-list" start="3"><li>호출한 모델에 새로운 데이터를 입력하여 예측값을 생성하고, 생성된 예측값을 SQL에 Output으로 전달합니다</li></ol><ol id="676d01d2-9d64-4ced-89ae-3715a96c81dd" class="numbered-list" start="4"><li>모델을 호출하고, 새로운 데이터를 입력하여 결과값을 반환하는 일련의 과정을 하나의 프로시저로 생성합니다.</li></ol><p id="74df77a0-296f-47fc-a400-00e52f3c50c6" class="">
+</p><h3 id="9a0de4b8-6a3c-454a-962f-0610632fc786" class="">새 데이터로 모델 실행</h3><figure id="061f42b3-aabc-4bfc-897f-7345376c2a39" class="image"><a href="/assets/posting/20210628/R11.png"><img style="width:1086px" src="/assets/posting/20210628/R11.png"/></a></figure><p id="7b4ea36b-223e-4c7f-ae06-4bb808ebbdaa" class="">위에서 생성한 프로시저를 호출하여 Output결과를 반환합니다. 예측하고자 하는 데이터를 입력하고 반환값으로 예측값을 얻습니다.</p><p id="4da58be1-d8a7-4a37-9358-849f3697e541" class="">
+</p><hr id="bf905cec-5030-44d8-9b5f-c2360d67ea60"/><p id="64813ad4-3aff-473a-88c1-a48d31e67fc1" class="">
+</p><blockquote id="2e55cbc0-4be5-452d-b5c8-d31159c0bb6b" class="">마무리</blockquote><p id="165fc714-6735-4e1c-a9fe-a9f15b69b296" class="">간단한 R 실습 예제와, R을 통한 머신러닝 예제까지 SQL에서 돌아가는 프로세스를 확인하였습니다. 기존에는 RDBMS에서 데이터를 불러와 R내에서 데이터 핸들링 작업을 진행했다면, SQL 내에서 R 분석엔진을 활용하여 데이터의 이동 없이 분석을 진행하는 작업이 가능해졌습니다. </p><p id="3790ec19-2a69-49c4-a1d2-5c5b5e2b5806" class="">상황에 따라 <strong>&#x27;기존의 분석방법&#x27;</strong>과 <strong>&#x27;새로이 탐색해본 R in SQL 방법&#x27;</strong> 중 적절히 선택해서 활용할 수 있다는 사실 자체가 분석가, 또는 개발에게 더 풍성한 도구 선택의 영역을 제공해줍니다. 제공되는 다양한 솔루션을 활용하여 데이터 분석이 우리의 삶에 더 친숙해지길 바랍니다.</p><p id="0bee7691-56ce-4a4e-9637-9a53edee34dd" class="">
+</p></div></article></body></html>
