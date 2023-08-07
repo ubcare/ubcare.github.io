@@ -1,9 +1,9 @@
 ---
-layout: post
+layout: post_removed
 title: "[UB인터뷰] 오토팩밖에 난 몰라! 미소천사 박환영님"
 date: 2021-06-08
 author: UB인터뷰
-categories: Post
+categories: Post_removed
 cover: "/assets/library.jpg"
 ---
 

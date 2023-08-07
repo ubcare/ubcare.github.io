@@ -1,9 +1,9 @@
 ---
-layout: post
+layout: post_removed
 title: "[UB인터뷰] 유비케어 기술의 수호천사, 임청수님"
 date: 2021-05-14
 author: UB인터뷰
-categories: Post
+categories: Post_removed
 cover: "/assets/starwars.jpg"
 ---
 

@@ -1,9 +1,9 @@
 ---
-layout: post
+layout: post_removed
 title: "[UB인터뷰] 친절함 끝판왕! 멋쟁이 임창희님"
 date: 2021-06-08
 author: UB인터뷰
-categories: Post
+categories: Post_removed
 cover: "/assets/starwars.jpg"
 ---
 

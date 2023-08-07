@@ -1,9 +1,9 @@
 ---
-layout: post
+layout: post_removed
 title: "[UB인터뷰] 의원시장의 개척자 박도희님"
 date: 2021-04-08
 author: UB인터뷰
-categories: Post
+categories: Post_removed
 //tag : database,query,erd
 cover: "/assets/spring.jpg"
 ---

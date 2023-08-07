@@ -1,9 +1,9 @@
 ---
-layout: post
+layout: post_removed
 title: "[UB인터뷰] 풀스택엔지니어, 황동식님"
 date: 2021-05-14
 author: UB인터뷰
-categories: Post
+categories: Post_removed
 cover: "/assets/orange-trees.jpg"
 ---
 

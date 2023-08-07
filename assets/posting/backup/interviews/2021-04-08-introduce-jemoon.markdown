@@ -1,9 +1,9 @@
 ---
-layout: post
+layout: post_removed
 title: "[UB인터뷰] 아침을 열어 주시는 바리스타 문지은님"
 date: 2021-04-08
 author: UB인터뷰
-categories: Post
+categories: Post_removed
 //tag : database,query,erd
 cover: "/assets/coffee2.jpg"
 ---

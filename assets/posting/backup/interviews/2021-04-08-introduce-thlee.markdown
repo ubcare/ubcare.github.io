@@ -1,9 +1,9 @@
 ---
-layout: post
+layout: post_removed
 title: "[UB인터뷰] 약국시장의 뉴미디어 전문가 이태훈님"
 date: 2021-04-08
 author: UB인터뷰
-categories: Post
+categories: Post_removed
 //tag : database,query,erd
 cover: "/assets/fullstack.jpg"
 ---
